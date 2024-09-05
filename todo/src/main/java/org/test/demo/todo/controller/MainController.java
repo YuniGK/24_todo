@@ -13,8 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class MainController {
+    //http://localhost:8080/swagger-ui/index.html
+
+    //http://localhost:8080/
     @GetMapping("/")
-    @ResponseBody
     public String root(){
         return "index";
     }
