@@ -7,12 +7,8 @@ function TodoBoard({todoList, onRemove}) {
     return(
         <div>
             <h1>Todo List</h1>
-
-            {todoList.map((item, idx)=>
-                <TodoItem item={item} idx={idx} onRemove={onRemove} />
-            )}
         </div>
     )
 }
 
-export default TodoBoard 
+export default TodoBoard

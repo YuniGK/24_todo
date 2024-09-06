@@ -11,11 +11,20 @@ function App() {
     const [todoList, setTodoList] = useState([]);
 
     useEffect(() => {
+        axios.get('/')
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
+    }, []);
+    /*
+    useEffect(() => {
         axios.get('/api')
             .then((res) => {
+                console.log("res "+res);
                 setTodoList(res.data);
             })
       }, []);
+    */
 
     const addItem = () => {
         console.log(inputValue);

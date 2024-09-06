@@ -5,13 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.test.demo.todolist.domain.Todo;
+import org.test.demo.todolist.dto.TodoDto;
 import org.test.demo.todolist.service.MainService;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -25,19 +22,14 @@ public class MainController {
 
     //http://localhost:8080
     @GetMapping("/")
-    public String root(ModelMap map){
-        map.addAttribute("todos", mainService.getAll());
-
-        log.info("todos = {}", mainService.getAll());
-        System.out.println("todos = " + mainService.getAll());
-
-        return "index";
+    public List<TodoDto> root(){
+        return mainService.getAll();
     }
 
     //http://localhost:8080/api
     @GetMapping("/api")
-    public List<String> react() {
-        return Arrays.asList("1", "2");
+    public List<TodoDto> react() {
+        return mainService.getAll();
     }
 
 }
