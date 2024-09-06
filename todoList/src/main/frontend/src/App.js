@@ -18,6 +18,8 @@ function App() {
       }, []);
 
     const addItem = () => {
+        console.log(inputValue);
+
         setTodoList([...todoList, inputValue])
         setInputValue('');
     };
