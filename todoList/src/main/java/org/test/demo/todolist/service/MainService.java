@@ -18,9 +18,40 @@ public class MainService {
 
     private final MainRepository mainRepository;
 
-    public List<TodoDto> getAll() {
+    @Transactional(readOnly = true)
+    public List<TodoDto> todoList() {
         List<Todo> todos = mainRepository.findAll();
 
         return todos.stream().map(TodoDto::from).toList();
     };
+
+    public void updateTodo(Long id, TodoDto dto) {
+        try {
+            Todo todo = mainRepository.getReferenceById(id);
+
+            todo.setTitle(dto.title());
+
+            mainRepository.save(todo);
+        }catch (Exception e){
+            log.warn("service 게시글 업데이트 실패 - {}", e.getMessage());
+        }
+    }
+
+    public void deleteTodo(Long id) {
+        try {
+            Todo todo = mainRepository.getReferenceById(id);
+
+            todo.setDeleted(true);
+
+            mainRepository.save(todo);
+        }catch (Exception e){
+            log.warn("service 게시글 삭제 실패 - {}", e.getMessage());
+        }
+    }
+
+    public void saveTodo(TodoDto dto) {
+        Todo todo = dto.toEntity();
+
+        mainRepository.save(todo);
+    }
 }

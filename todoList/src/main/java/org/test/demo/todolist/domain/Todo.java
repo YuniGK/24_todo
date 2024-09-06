@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,6 +25,7 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private String title;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -40,6 +38,7 @@ public class Todo {
     @Column(nullable = false)
     private LocalDateTime modifiedAt; // 수정일시
 
+    @Setter
     private Boolean deleted = false; // 삭제여부
 
     public Todo(String title, LocalDateTime createdAt, LocalDateTime modifiedAt, Boolean deleted) {
