@@ -59,7 +59,7 @@ public class MainController {
         try {
             mainService.saveTodo(request.toDto());
 
-            return new ResponseEntity<>("insert", HttpStatus.OK);
+            return new ResponseEntity<>("insert", HttpStatus.CREATED);
         }catch (Exception e){
             log.error("todo insert >>> ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
