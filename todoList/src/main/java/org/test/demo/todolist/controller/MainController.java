@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -24,9 +26,15 @@ public class MainController {
         return "index";
     }
 
+    //http://localhost:8080/
+    @GetMapping("/api")
+    public List<String> react() {
+        return Arrays.asList("1", "2");
+    }
+
     //http://localhost:8080/api/test
     @GetMapping("/api/test")
-    public String reactRoot() {
-        return "react index";
+    public List<String> reactRoot() {
+        return Arrays.asList("1", "2");
     }
 }
