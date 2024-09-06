@@ -19,22 +19,16 @@ import java.util.List;
 public class MainController {
     //http://localhost:8080/swagger-ui/index.html
 
-    //http://localhost:8080/
+    //http://localhost:8080
     @GetMapping("/")
-    @ResponseBody
     public String root(){
         return "index";
     }
 
-    //http://localhost:8080/
+    //http://localhost:8080/api
     @GetMapping("/api")
     public List<String> react() {
         return Arrays.asList("1", "2");
     }
 
-    //http://localhost:8080/api/test
-    @GetMapping("/api/test")
-    public List<String> reactRoot() {
-        return Arrays.asList("1", "2");
-    }
 }
