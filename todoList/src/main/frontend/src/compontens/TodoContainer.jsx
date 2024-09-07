@@ -51,6 +51,7 @@ const TodoContainer = () => {
 
   /* 삭제 */
   const onRemove = async (no) => {
+    console.log(no);
 
     const init = {
       method: 'PUT',

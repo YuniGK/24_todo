@@ -71,6 +71,7 @@ public class MainController {
     @PutMapping("/deleted/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         try {
+            log.info("id {}", id);
             mainService.deleteTodo(id);
             return new ResponseEntity<>("deleted", HttpStatus.OK);
         }catch (Exception e){
