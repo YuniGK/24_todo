@@ -7,6 +7,11 @@ function TodoBoard({todoList, onRemove}) {
     return(
         <div>
             <h1>Todo List</h1>
+
+        {todoList.map((item, index) => (
+            <TodoItem item={item} key={index} onRemove={onRemove} />
+        ))}
+
         </div>
     )
 }

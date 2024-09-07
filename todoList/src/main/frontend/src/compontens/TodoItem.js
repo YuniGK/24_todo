@@ -5,9 +5,10 @@ function TodoItem({item, idx, onRemove}) {
 
     return(
         <div className="todo-item">
-            {item}
+            <p>{item.title}</p>
 
             <button onClick={() => onRemove(idx)}>삭제</button>
+            <p>{item.createdAt}</p>
         </div>
     )
 }

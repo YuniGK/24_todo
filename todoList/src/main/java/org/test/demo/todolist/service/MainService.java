@@ -20,7 +20,7 @@ public class MainService {
 
     @Transactional(readOnly = true)
     public List<TodoDto> todoList() {
-        List<Todo> todos = mainRepository.findAll();
+        List<Todo> todos = mainRepository.findAllByDeletedFalse();
 
         return todos.stream().map(TodoDto::from).toList();
     };
