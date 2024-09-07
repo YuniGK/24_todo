@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+
 import java.util.Objects;
 
 @Getter
@@ -25,6 +26,7 @@ public class Todo extends AuditingFields {
     private String title;
 
     @Setter
+    @ColumnDefault("'저장'")
     private String deleted; // 삭제여부
 
     public Todo(String title, String deleted) {

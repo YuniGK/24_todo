@@ -56,10 +56,9 @@ public class MainController {
 
     //등록
     @PostMapping("/insert")
-    public ResponseEntity<?> insert(@RequestBody Todo entity){
+    public ResponseEntity<?> insert(@RequestBody TodoRequest req){
         try {
-            entity.setDeleted(FormStatus.CREATE.getDescription());
-            mainService.saveTodo(entity);
+            mainService.saveTodo(req.toDto());
 
             return new ResponseEntity<>("insert", HttpStatus.CREATED);
         }catch (Exception e){

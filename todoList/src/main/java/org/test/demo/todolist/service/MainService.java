@@ -50,7 +50,7 @@ public class MainService {
         }
     }
 
-    public void saveTodo(Todo entity) {
-        mainRepository.save(entity);
+    public void saveTodo(TodoDto req) {
+        mainRepository.save(req.toEntity());
     }
 }

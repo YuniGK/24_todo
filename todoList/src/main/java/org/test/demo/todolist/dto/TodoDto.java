@@ -21,8 +21,8 @@ public record TodoDto(
         return new TodoDto(id, title, createdAt, modifiedAt, deleted);
     }
 
-    public static TodoDto of(String title) {
-        return new TodoDto(null, title, null, null, null);
+    public static TodoDto of(String title, String deleted) {
+        return new TodoDto(null, title, null, null, deleted);
     }
 
     public static TodoDto from(Todo entity){

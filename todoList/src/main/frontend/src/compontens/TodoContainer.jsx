@@ -26,6 +26,7 @@ const TodoContainer = () => {
     // POST request
     const data = {
       title: input,
+      deleted : "저장"
     };
 
     const init = {
