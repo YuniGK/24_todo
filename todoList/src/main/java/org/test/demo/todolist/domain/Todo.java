@@ -5,11 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
+import org.hibernate.annotations.ColumnDefault;
 import java.util.Objects;
 
 @Getter
@@ -20,7 +16,7 @@ import java.util.Objects;
         @Index(columnList = "createdAt")
 })
 @Entity
-public class Todo {
+public class Todo extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,28 +24,16 @@ public class Todo {
     @Setter
     private String title;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt; // 생성일시
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-
     @Setter
-    private Boolean deleted = false; // 삭제여부
+    private String deleted; // 삭제여부
 
-    public Todo(String title, LocalDateTime createdAt, LocalDateTime modifiedAt, Boolean deleted) {
+    public Todo(String title, String deleted) {
         this.title = title;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.deleted = deleted;
     }
 
-    public static Todo of(String title, LocalDateTime createdAt, LocalDateTime modifiedAt, Boolean deleted) {
-        return new Todo(title, createdAt, modifiedAt, deleted);
+    public static Todo of(String title, String deleted) {
+        return new Todo(title, deleted);
     }
 
     @Override

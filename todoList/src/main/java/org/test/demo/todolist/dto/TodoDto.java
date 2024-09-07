@@ -1,5 +1,6 @@
 package org.test.demo.todolist.dto;
 
+import org.test.demo.todolist.domain.FormStatus;
 import org.test.demo.todolist.domain.Todo;
 
 import java.time.LocalDateTime;
@@ -9,14 +10,14 @@ public record TodoDto(
         , String title
         , LocalDateTime createdAt
         , LocalDateTime modifiedAt
-        , Boolean deleted
+        , String deleted
 ) {
     public static TodoDto of(
             Long id
             , String title
             , LocalDateTime createdAt
             , LocalDateTime modifiedAt
-            , Boolean deleted) {
+            , String deleted) {
         return new TodoDto(id, title, createdAt, modifiedAt, deleted);
     }
 
@@ -37,8 +38,6 @@ public record TodoDto(
     public Todo toEntity(){
         return Todo.of(
                 title
-                , createdAt
-                , modifiedAt
                 , deleted
         );
     }

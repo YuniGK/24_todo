@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.test.demo.todolist.domain.FormStatus;
 import org.test.demo.todolist.domain.Todo;
 import org.test.demo.todolist.dto.TodoDto;
 import org.test.demo.todolist.repository.MainRepository;
@@ -20,7 +21,7 @@ public class MainService {
 
     @Transactional(readOnly = true)
     public List<TodoDto> todoList() {
-        List<Todo> todos = mainRepository.findAllByDeletedFalse();
+        List<Todo> todos = mainRepository.findByDeletedContaining(FormStatus.CREATE.getDescription());
 
         return todos.stream().map(TodoDto::from).toList();
     };
@@ -41,7 +42,7 @@ public class MainService {
         try {
             Todo todo = mainRepository.getReferenceById(id);
 
-            todo.setDeleted(true);
+            todo.setDeleted(FormStatus.UPDATE.getDescription());
 
             mainRepository.save(todo);
         }catch (Exception e){
@@ -49,9 +50,7 @@ public class MainService {
         }
     }
 
-    public void saveTodo(TodoDto dto) {
-        Todo todo = dto.toEntity();
-
-        mainRepository.save(todo);
+    public void saveTodo(Todo entity) {
+        mainRepository.save(entity);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.test.demo.todolist.domain.FormStatus;
 import org.test.demo.todolist.domain.Todo;
 import org.test.demo.todolist.dto.TodoDto;
 import org.test.demo.todolist.dto.request.TodoRequest;
@@ -55,9 +56,10 @@ public class MainController {
 
     //등록
     @PostMapping("/insert")
-    public ResponseEntity<?> insert(TodoRequest request){
+    public ResponseEntity<?> insert(@RequestBody Todo entity){
         try {
-            mainService.saveTodo(request.toDto());
+            entity.setDeleted(FormStatus.CREATE.getDescription());
+            mainService.saveTodo(entity);
 
             return new ResponseEntity<>("insert", HttpStatus.CREATED);
         }catch (Exception e){
