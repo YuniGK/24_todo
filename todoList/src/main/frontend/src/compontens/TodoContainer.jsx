@@ -74,6 +74,7 @@ const TodoContainer = () => {
 
   /* 수정 */
   const onUpdate = async (no) => {
+    /*
     const init = {
       method: 'PUT',
       headers: {
@@ -87,7 +88,7 @@ const TodoContainer = () => {
     } catch (error) {
       console.log(error);
     }
-
+    */
   };
 
   return (
