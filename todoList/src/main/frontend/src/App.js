@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import {useEffect, useState} from "react";
-import axios from "axios";
 
 import './App.css';
 import TodoBoard from './compontens/TodoBoard';
@@ -32,6 +31,11 @@ function App() {
 
     const onRemove = (id) => {
         setTodoList(todoList.filter((item, idx) => idx !== id));
+
+    }
+
+    const onUpdate = (id, item) => {
+
     }
 
     return (
@@ -45,7 +49,7 @@ function App() {
             />
             <button onClick={addItem}>추가</button>
 
-            <TodoBoard todoList={todoList} onRemove={onRemove} />
+            <TodoBoard todoList={todoList} onRemove={onRemove} onUpdate={onUpdate} />
         </div>
     );
 }

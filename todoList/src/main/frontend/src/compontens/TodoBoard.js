@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-function TodoBoard({todoList, onRemove}) {
+function TodoBoard({todoList, onRemove, onUpdate}) {
     console.log("todoBoard ", todoList)
 
     return(
@@ -9,7 +9,7 @@ function TodoBoard({todoList, onRemove}) {
             <h1>Todo List</h1>
 
         {todoList.map((item, index) => (
-            <TodoItem item={item} key={index} onRemove={onRemove} />
+            <TodoItem item={item} key={index} onRemove={onRemove} onUpdate={onUpdate} />
         ))}
 
         </div>
