@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const TodoItem = ({props, todo, onRemove, onUpdate}) => {
+const TodoItem = ({todo, onRemove, onUpdate}) => {
     const editedText = useRef(null);
 
     const [isEditClicked, setIsEditClicked] = useState(false);
