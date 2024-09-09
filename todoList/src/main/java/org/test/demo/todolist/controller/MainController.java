@@ -45,18 +45,6 @@ public class MainController {
         }
     }
 
-    @GetMapping("/list/{id}")
-    public ResponseEntity<?> getOne(@PathVariable Long id){
-        try {
-            TodoResponse todo = TodoResponse.from(mainService.todos(id));
-
-            return new ResponseEntity<>(todo, HttpStatus.OK);
-        }catch (Exception e){
-            log.error("todo one >>> ", e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     //수정
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable Long id
