@@ -41,7 +41,9 @@ const TodoContainer = () => {
       const response = await fetch('/todo/insert', init);
       const newTodo = await response.json();
       const updatedList = [newTodo, ...todoList]
+
       setTodoList( updatedList );
+
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +62,6 @@ const TodoContainer = () => {
 
     try {
       const response = await fetch(`/todo/deleted/${no}`, init);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +86,11 @@ const TodoContainer = () => {
 
     try {
       const response = await fetch(`/todo/update/${no}`, init);
-      console.log(response);
+      const newTodo = await response.json();
+      const updatedList = [...newTodo]
+
+      setTodoList( updatedList );
+
     } catch (error) {
       console.log(error);
     }

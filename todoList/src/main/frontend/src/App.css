@@ -33,6 +33,8 @@
   outline: none;
 }
 
+.todoList .item{margin: 20px 0;}
+
 .form .btn {
   width: 15%;
 }
@@ -47,6 +49,8 @@
   background-color: cornflowerblue;
   color: white;
 }
+
+.btn-left{display: inline-flex; margin-right: 20px;}
 
 .todoList {
   height: 500px;

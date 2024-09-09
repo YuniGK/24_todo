@@ -1,10 +1,10 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrashCan, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const TodoItem = ( { todo, onRemove, onUpdate} ) => {
+const TodoItem = ({props, todo, onRemove, onUpdate}) => {
     const editedText = useRef(null);
 
     const [isEditClicked, setIsEditClicked] = useState(false);
@@ -23,9 +23,7 @@ const TodoItem = ( { todo, onRemove, onUpdate} ) => {
     }
 
     const openEdit = (id) => {
-        console.log(JSON.stringify(editedText)+" "+id);
         setIsEditClicked(true);
-        //editedText.current.focus();
     }
 
     const cancelEdit = () => {
@@ -56,23 +54,23 @@ const TodoItem = ( { todo, onRemove, onUpdate} ) => {
 
             <div className="item">
                 {isEditClicked ? (
-                        <div>
-                            <button onClick={submitEditedContent}>
+                        <div className='btn-left'>
+                            <button className='btn' onClick={submitEditedContent}>
                                 <FontAwesomeIcon icon={faCheck} size="2x" color="white"/>
                             </button>
-                            <button onClick={cancelEdit}>
+                            <button className='btn' onClick={cancelEdit}>
                                 <FontAwesomeIcon icon={faXmark} size="2x" color="white"/>
                             </button>
                         </div>
                     ) : (
-                    <button className='btn' onClick={() => openEdit(todo.id)}>
+                    <button className='btn btn-right' onClick={() => openEdit(todo.id)}>
                         {/* 수정 */}
                         <FontAwesomeIcon icon={faPenToSquare} size="2x" color="white"/>
                     </button>
                     )
                 }
 
-                <button className='btn' onClick={() => onRemove(todo.id)}>
+                <button className='btn btn-right' onClick={() => onRemove(todo.id)}>
                     {/* 삭제 */}
                     <FontAwesomeIcon icon={faTrashCan} size="2x" color="white"/>
                 </button>

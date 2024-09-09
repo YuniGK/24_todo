@@ -63,7 +63,9 @@ public class MainController {
             , @RequestBody TodoRequest req){
         try {
             mainService.updateTodo(id, req.toDto());
-            return new ResponseEntity<>("update", HttpStatus.OK);
+            List<TodoDto> todoList = mainService.todoList();
+
+            return new ResponseEntity<>(todoList, HttpStatus.OK);
         }catch (Exception e){
             log.error("todo update >>> ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -76,7 +78,7 @@ public class MainController {
         try {
             mainService.saveTodo(req.toDto());
 
-            return new ResponseEntity<>("insert", HttpStatus.CREATED);
+            return new ResponseEntity<>(req, HttpStatus.CREATED);
         }catch (Exception e){
             log.error("todo insert >>> ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
