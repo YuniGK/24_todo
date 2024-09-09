@@ -50,6 +50,9 @@ IntelliJ > settings > Build, ... > Build Tools > Gradle
 Build and run using : Gradle
 Run tests using : Gradle
 
+/src/main/resources/properties > env.properties
+DB 설정
+
 - 빌드
 
 
