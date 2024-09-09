@@ -51,16 +51,12 @@ const TodoContainer = () => {
 
   /* 삭제 */
   const onRemove = async (no) => {
-    console.log(no);
-
     const init = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
     };
-
-    console.log(no)
 
     try {
       const response = await fetch(`/todo/deleted/${no}`, init);
@@ -69,17 +65,22 @@ const TodoContainer = () => {
       console.log(error);
     }
 
-    setTodoList( (todoList) => todoList.filter((todo) => todo.no !== no) )
+    setTodoList( (todoList) => todoList.filter((todo) => todo.id !== no) )
   };
 
   /* 수정 */
-  const onUpdate = async (no) => {
-    /*
+  const onUpdate = async (title, no) => {
+    const data = {
+      title: title,
+      deleted : "저장"
+    };
+
     const init = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(data),
     };
 
     try {
@@ -88,7 +89,6 @@ const TodoContainer = () => {
     } catch (error) {
       console.log(error);
     }
-    */
   };
 
   return (

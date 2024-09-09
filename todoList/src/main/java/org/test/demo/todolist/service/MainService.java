@@ -1,5 +1,6 @@
 package org.test.demo.todolist.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.test.demo.todolist.dto.TodoDto;
 import org.test.demo.todolist.repository.MainRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -52,5 +54,12 @@ public class MainService {
 
     public void saveTodo(TodoDto req) {
         mainRepository.save(req.toEntity());
+    }
+
+    @Transactional(readOnly = true)
+    public TodoDto todos(Long id) {
+        return mainRepository.findById(id)
+                .map(TodoDto::from)
+                .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다 - id: " + id));
     }
 }

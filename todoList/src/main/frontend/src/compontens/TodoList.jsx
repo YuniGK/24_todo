@@ -4,10 +4,10 @@ import TodoItem from './TodoItem';
 const TodoList = ({ todoList, onRemove, onUpdate }) => {
   return (
     <ul className='todoList'>
-      {todoList.map((todo) => (
+      {todoList.map((todo, idx) => (
           <TodoItem
             todo={todo}
-            key={todo.no}
+            key={todo.id}
             onRemove={onRemove}
             onUpdate={onUpdate}
           />
