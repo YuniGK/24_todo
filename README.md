@@ -54,7 +54,8 @@ Run tests using : Gradle
 DB 설정
 
 - 빌드
-
+Gradle 항목을 클릭후 Tasks/build/bootJar 더블클릭 시 Jar 파일로 빌드를 진행합니다.aaa
+https://lucas-owner.tistory.com/21
 
 ### API
 http://localhost:8080/swagger-ui/index.html
